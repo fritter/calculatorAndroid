@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.PatternMatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -46,6 +47,20 @@ public class MainActivity extends AppCompatActivity {
         btn_c.setOnClickListener(v -> {
             computation_screen.setText("");
             result_screen.setText("");
+        });
+
+        btn_seta.setOnClickListener(v -> {
+            try {
+                String result = null;
+                String str = computation_screen.getText().toString();
+                if ((str != null) && (str.length() > 0)) {
+                    result = str.substring(0, str.length() - 1);
+                    computation_screen.setText(result);
+                }
+            } catch (Exception e) {
+                System.out.println("Error: It is not possible to remove the last character of a void string!");
+            }
+
         });
 
         btn_dot.setOnClickListener(v -> computation_screen.setText(computation_screen.getText() + "."));
